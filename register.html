@@ -1,0 +1,206 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%> -->
+<!-- <c:set var="cxt" value="<%=basePath %>"> --></c:set><!-- 绝对路径 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+<title>注册</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/public.css" rel="stylesheet" type="text/css">
+<link href="css/design-in.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/ecmascript" src="js/bootstrap.min.js"></script>
+<!--提示框-->
+<script type="text/javascript" src="js/jquery.tips.js"></script>
+<!-- 数据校验JS -->
+<script type="text/javascript" src="js/common/myValidate.js"></script>
+<script type="text/javascript">
+$(function(){	
+	//  input与textarea默认提示文本焦点事件；	
+	$(function() {
+		//集体调用
+		$("input").each(function(){
+			$(this).setDefauleValue();
+		});  
+	});  
+	//设置input,textarea默认值
+	$.fn.setDefauleValue = function() {
+		var defauleValue = $(this).val();
+		$(this).val(defauleValue).css("color","#999");
+		$('.message-board input').css("color","#fff");
+		return this.each(function() {       
+			$(this).focus(function() {
+				if ($(this).val() == defauleValue) {
+					$(this).val("").css("color","#000");//输入值的颜色
+					$('.message-board input').css("color","#fff");
+				}
+			}).blur(function() {
+				if ($(this).val() == "") {
+					$(this).val(defauleValue).css("color","#999");//默认值的颜色
+					$('.message-board input').css("color","#fff");
+				}
+			});
+		});
+	};
+	
+	//表单提交按钮
+	$('#submitBtn').on('click',function(){
+		if(validation()){
+			var PARENTDISCODE=$("#PARENTDISCODE").val();
+			if(PARENTDISCODE!=""){
+				//当用户注册的时候输入了父级分销商，要校验是否存在
+				$.ajax({
+					url:"${cxt}/web/frontRegister/hasPARENTDISCODE.do",
+					data:{"CODE":PARENTDISCODE},
+					datatype:"json",
+					async: false,
+					success:function(result){
+						if(result=="false"){
+							$('#PARENTDISCODE').tips({
+								side : 3,
+								msg : '请输入正确的分销码',
+								bg : "#AE81FF",
+								time : 2
+							});
+						}else{
+							$('#registerForm').submit();
+						}
+					}
+				});
+			}else{
+				$('#registerForm').submit();
+			}
+		}
+	});
+	
+	$("#codeBtn").on('click',function(){
+		getValidCode();
+	});
+});
+
+//校验数据
+function validation(){
+	if(!myValidation('registerForm')){
+		return false;
+	}
+	if($('#pwd').val() != $('#repwd').val()){
+		$('#repwd').tips({
+			side : 3,
+			msg : '两次输入的密码不一致',
+			bg : "#AE81FF",
+			time : 2
+		});
+		$('#repwd').focus();
+		return false;
+	}
+	return true;
+}
+
+//获取验证码功能
+function getValidCode(){
+	var num=60;
+	if(/^\d{11}$/.test($("#mobile").val())){
+		$.ajax({
+			url:"${cxt}/web/frontRegister/authcode.do",
+			data:{"mobile":$("#mobile").val()},
+			datatype:"json",
+			success:function(result){
+				if(result.code=="10000"){
+					var i = setInterval(function() {
+			        	if(num>0){
+			        		num--;
+			        		$("#codeBtn").html(num+"秒后重获");
+			        		$("#codeBtn").css("background","gray").css("color","black").css("border","none");
+			        	}else{
+			        		clearInterval(i);
+			        		$("#codeBtn").html("获取验证码");
+			        		$("#codeBtn").css("background","#fff4f4").css("color","#f64545").css("border","1px solid #f64545");
+			        	}
+			        }, 1000);
+				}else{
+					$("#codeBtn").tips({
+						side:2,
+			            msg:'获取验证码失败，请重新获取',
+			            bg:'#AE81FF',
+			            time:2
+			        });
+				}
+			}
+		});
+	}else{
+		$('#mobile').tips({
+			side : 3,
+			msg : '请输入手机号码',
+			bg : "#AE81FF",
+			time : 2
+		});
+		$(e).focus();
+	}
+}
+</script>
+</head>
+
+
+<body style="background:#f5f5f5;">
+<div class="container-fluid">	
+	<!--店小二顶部内容区域start-->
+	<div class="land-header">
+    	<div class="container">
+        	<a class="logobox" href="${cxt}web/front/index" title=""><img src="images/logo.png" width="100%" /></a>
+        	<h1>欢迎注册</h1>
+        </div>    	
+    </div><!--店小二顶部内容end-->
+    
+    <!--登录界面主题内容区域start-->
+	<div class="main-column">
+		<div class="main-sider">
+	    	<div class="main-content">
+	        	<div class="main-back"><img src="images/lslider.jpg" alt="" width="100%" height="100%" /></div>
+	            <form class="form-horizontal" id="registerForm" action="${cxt}/web/frontRegister/saveU">
+	            	<a class="backDesigner" href="login.html" title="">返回登录</a>
+	            	<h1 class="design-header">账户注册</h1>
+	                <div class="form-group">
+	                	<label>账号</label>
+	                    <input name="phone" type="text" value="请输入你的手机号" id="mobile" class="myvalid" myvaltype="mobile|ajaxValid" requesturl="${cxt}web/frontRegister/hasU" requestdata='{"USERNAME":"mobile"}' myvalmsg="请输入正确的手机号码|该用户名已被注册" />
+	                </div>
+	                <div class="form-group">
+	                	<label>验证码</label>
+	                    <input name="AUTHCODE" class="verfit myvalid" type="text" value="输入你收到的验证码" myvaltype="en_num|ajaxValid" requesturl="${cxt}web/frontRegister/checkAuthCode" requestdata='{"phone":"mobile","authcode":"authcode"}' myvalmsg="请输入正确的验证码|验证码输入错误" id="authcode"/>
+	                    <h6 id="codeBtn">获取验证码</h6>
+	                </div>
+	                <div class="form-group">
+	                	<label>登录密码</label>
+	                    <input name="PASSWORD" type="password" id="pwd" class="myvalid" myvaltype="notnull|lengthValid" lengthScope='{"minLength":6,"maxLength":16}' myvalmsg="请输入密码|请输入6-16位的密码" value="" />
+	                </div>
+	                <div class="form-group">
+	                	<label>确认密码</label>
+	                    <input type="password" id="repwd" value="" class="myvalid" myvaltype="notnull" myvalmsg="请输入密码"  />
+	                </div> 
+	                 <div class="form-group">
+	                	<label>分销码</label>
+	                    <input type="text" id="PARENTDISCODE" name="PARENTDISCODE"  value=""  maxlength="8"/>
+	                </div>                
+	                <a href="javascript:void(0)" id="submitBtn" class="landbtn">注册</a>
+	            </form>
+	        </div>
+	    	<p class="uset-idea">注册登录即表明您同意我们的<a href="#" target="_blank" >用户协议</a></p>
+	    </div>
+    </div><!--登录界面主体内容end-->
+    
+   <!--底部网站链接及版权所有内容区域-->
+   <%@ include file="../footLogin.jsp" %>
+</div>
+</body>
+</html>

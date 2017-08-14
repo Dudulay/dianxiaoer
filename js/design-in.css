@@ -1,0 +1,254 @@
+
+
+/*顶部内容样式区域Start*/
+.land-header{
+	height:98px;
+	border-bottom:2px solid #f64545;
+	background:#fff;
+	padding:25px 0;
+	overflow:hidden;
+	}
+.logobox{
+	float:left;
+	width:140px;
+	min-height:20px;	
+	overflow:hidden;
+	}	
+.logobox img{
+	display:block;
+	margin:0;
+	}	
+.land-header h1{
+	float:left;
+	margin-left:46px;
+	font-size:30px;
+	line-height:45px;
+	color:#666;
+	}
+
+/*顶部内容样式end*/
+
+
+/*登录界面主题内容样式区域start*/
+.main-column{
+	width:100%;
+	height:600px;
+	background:url(../images/land-bj.jpg) no-repeat;
+	background-size:cover;
+	overflow:hidden;
+	}
+.main-sider{
+	width:648px;
+	margin:94px auto;
+	}
+.uset-idea{
+	margin:10px 0;
+	text-align:right;
+	font-size:14px;
+	line-height:24px;
+	color:rgba(255,255,255,0.7);
+	}
+.uset-idea a{
+	text-decoration:underline;
+	color:rgba(255,255,255,0.7);
+	}
+.main-content{
+	width:100%;
+	margin:0 auto;
+	background:#fff;
+	-webkit-box-shadow:0 10px 20px rgba(0,0,0,0.3);
+	box-shadow:0 10px 20px rgba(0,0,0,0.3);
+	overflow:hidden;
+	}	
+.main-back{
+	float:left;
+	width:248px;
+	min-height:360px;
+	overflow:hidden;
+	}	
+.main-back img{
+	display:block;
+	margin:0;
+	}	
+.form-horizontal{
+	float:left;
+	width:400px;
+	overflow:hidden;
+	}	
+.backDesigner{
+	display:block;
+	font-family:'宋体';
+	font-size:14px;
+	line-height:24px;
+	text-align:right;
+	margin:13px 13px 0 0;
+	color:#999;
+	}
+.design-header{
+	font-size:22px;
+	line-height:44px;
+	text-align:center;
+	color:#fc6a6a;
+	}
+	
+.form-horizontal .form-group{
+	margin:0;
+	width:80%;
+	margin:10px auto;
+	}	
+.form-group label{
+	display:block;
+	margin:0;
+	font-weight:normal;
+	font-family:'宋体';
+	font-size:14px;
+	line-height:20px;
+	color:#666;
+	}	
+.form-group input{
+	display:block;
+	width:100%;
+	height:28px;
+	border:none;
+	border-bottom:1px solid #999;
+	font-family:'宋体';
+	font-size:16px;
+	line-height:28px;
+	color:#666;
+	outline:0;
+	}	
+.form-group a{
+	font-family:'宋体';
+	font-size:14px;
+	line-height:24px;
+	color:#999;
+	}
+.backDesigner:hover,.form-group a:hover{color:#fc6a6a;}
+.form-group a.forget{float:left;}
+.form-group a.register{float:right;}
+.landbtn{
+	clear:both;
+	display:block;
+	width:80%;
+	height:40px;
+	margin:20px auto;
+	border-radius:0;
+	background:#f64545;
+	-webkit-box-shadow:0 6px 10px rgba(246,69,69,0.3);
+	box-shadow:0 8px 10px rgba(246,69,69,0.3);
+	font-family:'宋体';
+	letter-spacing:18px;
+	font-size:16px;
+	text-align:center;
+	line-height:40px;	
+	color:#fff;
+	outline:0;	
+	}
+.landbtn:hover,.landbtn:focus{outline:0;color:#fff;}
+
+/*登录界面主题样式end*/
+
+
+/*注册独立内容独立样式区域start*/
+
+.form-group input.verfit{
+	float:left;
+	width:60%;
+	}
+.form-group h6{
+	float:right;
+	width:38%;
+	height:36px;
+	background:#fff4f4;
+	border:1px solid #f64545;
+	font-family:'宋体';
+	font-size:16px;
+	line-height:36px;
+	text-align:center;
+	color:#f64545;
+	margin-top:-8px;
+	cursor:pointer;
+	}
+
+/*注册独立样式end*/
+
+
+/*底部网站链接及版权所有内容样式区域start*/
+
+.down-back{margin:20px 0;}
+.back-list{
+	width:690px;
+	margin:0 auto;
+	overflow:hidden;
+	}
+.back-list li{
+	float:left;
+	font-family:'宋体';
+	font-size:12px;
+	line-height:24px;
+	text-align:center;
+	color:#999;	
+	}
+.back-list li:hover a{color:#fc6a6a;}
+.back-list li span{
+	float:right;
+	margin:0 10px;
+	}
+.back-list li a{color:#999;}
+	
+.copy-right{
+	clear:both;
+	font-family:'宋体';
+	font-size:12px;
+	line-height:24px;
+	text-align:center;
+	color:#999;
+	}	
+
+/*底部网站链接及版权所有样式end*/
+
+
+
+/*响应式布局样式区域*/
+
+@media screen and (max-width:767px) {
+	
+	.land-header{height:68px;padding:18px 0;}
+	.logobox{width:100px;}
+	.land-header h1{margin-left:18px;font-size:24px;line-height:36px;}
+	
+	.main-sider{width:460px;margin:140px auto;}
+	.backDesigner{margin:2px 10px 0 0;}
+	.main-back{width:200px;min-height:320px;height:395px;}
+	.form-horizontal{width:260px;padding-top:8px;}
+	.form-horizontal .form-group{width:90%;margin:15px auto;}
+	.form-group input{font-size:14px;}
+	.landbtn{width:90%;margin:18px auto;}
+	
+	.back-list{width:100%;padding:0 1%;}
+	
+	
+	/*注册独立内容独立样式区域start*/
+
+	.design-header{line-height:32px;}
+	
+	}
+	
+@media screen and (max-width:480px) {
+	
+		
+	.main-column{height:auto;}
+	.main-sider{width:98%;margin:60px auto;}
+	.main-back{display:none;}
+	.form-horizontal{width:100%;padding-top:8px;}
+	.form-horizontal .form-group{width:90%;margin:15px auto;}
+	.landbtn{width:90%;margin:18px auto;}
+	
+	.back-list{width:100%;padding:0 1%;}
+	.back-list li{width:20%;margin:5px 0;}	
+	.back-list li span{display:none;}	
+	.copy-right{line-height:18px;}
+	
+	
+	}
+

@@ -1,0 +1,51 @@
+
+
+
+/*无订单状态内容样式区域start*/
+
+.noorder-status{
+	clear:both;
+	width:100%;
+	padding:30px 0;
+	background:#eee;
+	overflow:hidden;
+	}
+.reprice-camera{
+	width:24%;
+	min-height:50px;
+	margin:0 auto;
+	overflow:hidden;
+	}
+.reprice-camera img{display:block;margin:0;}
+.tip-text{
+	text-align:center;
+	margin:20px auto;
+	}
+.tip-text h1{
+	font-size:20px;
+	line-height:36px;
+	color:#9b9b9b;
+	}
+.tip-text p{
+	font-size:14px;
+	line-height:30px;
+	color:#c9c9c9;
+	}
+
+/*无订单状态内容样式end*/
+
+
+/*移动端响应式布局内容样式区域*/
+
+@media screen and (max-width:767px) {
+	
+	.noorder-status{padding:15px 0;}
+	.reprice-camera{width:30%;}	
+
+	}
+@media screen and (max-width:480px) {
+	
+	.noorder-status{padding:15px 0;}
+	.reprice-camera{width:50%;}	
+
+	}
